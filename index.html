@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="sortfirkant" id="element">
+        <span>top</span>
+    </div>
+    <br><br><button type="button" id="knap">Drej</button>
+    <div id="output"></div>
+
+    <script>
+        const element = document.getElementById("element");
+        const knap = document.getElementById("knap");
+        let drej = 0;
+        let drejetid = 0;
+        knap.addEventListener("click", function () {
+            element.classList.remove("rotate");
+            element.classList.add("rotate");
+            nulstilHjul();
+            drejetid = Math.floor(Math.random() * 4000) + 5000;
+            console.log(drejetid);
+            drej = setInterval(drejfunc, drejetid);
+        })
+
+        function drejfunc() {
+            const output = document.getElementById("output");
+            element.style.animationPlayState = 'paused';
+            clearInterval(drej);
+            if (drejetid < 6000) {
+                output.innerHTML = "Drejetid mindre 6000";
+            } else if (drejetid < 7000) {
+                output.innerHTML = "Drejetid mindre 7000";
+            } else if (drejetid < 8000) {
+                output.innerHTML = "Drejetid mindre 8000";
+            } else if (drejetid < 9000) {
+                output.innerHTML = "Drejetid mindre 9000";
+            } else if (drejetid < 10000) {
+                output.innerHTML = "Drejetid mindre 10000";
+            }
+        }
+
+        function nulstilHjul() {
+            // remove animation 
+            document.querySelector(".rotate").style.animation = 'none';
+            // trigger reflow
+            document.querySelector(".rotate").offsetWidth;
+            // add animation again
+            document.querySelector(".rotate").style.animation = 'rotate 5s normal linear infinite both';
+        }
+    </script>
+
+</body>
+
+</html>
